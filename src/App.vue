@@ -5,16 +5,12 @@
 
   <div>
     <input type="text" v-model="newTask" placeholder="Add a new task">
-    <button @click="addTask">Add task</button>
+    <button @click="addTask" :disabled="newTask.length < 1">Add task</button>
   </div>
 
   <ul>
     <li v-for="task in tasks" :key="task.id">
       {{ task.id }}. {{ task.name }}
-
-      <div v-if="task.finished">
-        <button>Delete task</button>
-      </div>
     </li>
   </ul>
 </template>
@@ -43,6 +39,18 @@ export default {
       });
 
       this.newTask = ''
+    },
+    removeTask(taskId) {
+      this.tasks = this.tasks.filter(task => task.id !== taskId)
+    },
+    toggleTask(taskId) {
+      this.tasks = this.tasks.map(task => {
+        if (task.id === taskId) {
+          task.finished = !task.finished
+        }
+
+        return task
+      })
     }
   }
 }
