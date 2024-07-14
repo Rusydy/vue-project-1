@@ -9,8 +9,8 @@
   </div>
 
   <ul>
-    <li v-for="task in tasks" :key="task.id">
-      {{ task.id }}. {{ task.name }}
+    <li v-for="(task, index) in tasks" :key="index">
+      {{ index + 1 }}. {{ task.name }}
 
       <button @click="removeTask(task.id)">Remove</button>
       <button @click="toggleTask(task.id)">
@@ -26,11 +26,8 @@ export default {
     return {
       title: 'My To Do App',
       newTask: '',
-      tasks: [
-        { id: 1, name: 'Learn Vue JS', finished: false },
-        { id: 2, name: 'Build a Vue application', finished: false },
-        { id: 3, name: 'Write an article about Vue JS', finished: false }
-      ]
+      nextTaskId: 1,
+      tasks: []
     }
   },
   methods: {
@@ -38,11 +35,12 @@ export default {
       if (this.newTask.length < 1) return
 
       this.tasks.push({
-        id: this.tasks.length + 1,
+        id: this.nextTaskId,
         name: this.newTask,
         finished: false
       });
 
+      this.nextTaskId++
       this.newTask = ''
     },
     removeTask(taskId) {
