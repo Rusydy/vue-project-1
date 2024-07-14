@@ -8,18 +8,13 @@
     <button @click="addTask">Add task</button>
   </div>
 
-  <div v-if="newTask.length > 0">
-    <h3>New task preview</h3>
-    <p>{{ newTask }}</p>
-  </div>
-
   <ul>
     <li v-for="task in tasks" :key="task.id">
-        {{ task.id }}. {{ task.name }}
+      {{ task.id }}. {{ task.name }}
 
-        <div v-if="task.finished">
-            <button>Delete task</button>
-        </div>
+      <div v-if="task.finished">
+        <button>Delete task</button>
+      </div>
     </li>
   </ul>
 </template>
