@@ -4,7 +4,7 @@
   <h2>Add a new task</h2>
 
   <div>
-    <input type="text" v-model="newTask" placeholder="Add a new task">
+    <input type="text" v-model="newTask" placeholder="Add a new task" @keyup.enter="addTask">
     <button @click="addTask" :disabled="newTask.length < 1">Add task</button>
   </div>
 
