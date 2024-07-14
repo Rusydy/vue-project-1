@@ -11,6 +11,11 @@
   <ul>
     <li v-for="task in tasks" :key="task.id">
       {{ task.id }}. {{ task.name }}
+
+      <button @click="removeTask(task.id)">Remove</button>
+      <button @click="toggleTask(task.id)">
+        {{ task.finished ? 'Mark as unfinished' : 'Mark as finished' }}
+      </button>
     </li>
   </ul>
 </template>
