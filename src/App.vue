@@ -13,11 +13,16 @@
   </div>
 
   <ul>
-    <li v-for="(task, index) in latestTask" :key="index">
+    <li 
+      v-for="(task, index) in latestTask" 
+      :key="index" 
+      @click.stop="toggleTask(task.id)"
+      :class="{ strikeout: task.finished }"
+      >
       {{ index + 1 }}. {{ task.name }}
 
-      <button @click="removeTask(task.id)">Remove</button>
-      <button @click="toggleTask(task.id)">
+      <button @click.stop="removeTask(task.id)">Remove</button>
+      <button @click.stop="toggleTask(task.id)">
         {{ task.finished ? 'Mark as unfinished' : 'Mark as finished' }}
       </button>
     </li>
@@ -72,3 +77,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.strikeout {
+  text-decoration: line-through;
+}
+</style>
