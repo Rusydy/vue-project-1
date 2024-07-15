@@ -13,12 +13,8 @@
   </div>
 
   <ul>
-    <li 
-      v-for="(task, index) in latestTask" 
-      :key="index" 
-      @click.stop="toggleTask(task.id)"
-      :class="{ strikeout: task.finished }"
-      >
+    <li v-for="(task, index) in latestTask" :key="index" @click.stop="toggleTask(task.id)"
+      :class="{ strikeout: task.finished }">
       {{ index + 1 }}. {{ task.name }}
 
       <button @click.stop="removeTask(task.id)">Remove</button>
