@@ -1,4 +1,6 @@
 <template>
+  <img :src="logoURL" :alt="logoCaption" width="200" height="200" />
+
   <h1>{{ title }}</h1>
 
   <h2>Add a new task</h2>
@@ -27,6 +29,8 @@ export default {
       title: 'My To Do App',
       newTask: '',
       nextTaskId: 1,
+      logoURL: 'https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1955&q=80',
+      logoCaption: 'A photo by Kelly Sikkema on Unsplash showing post-it notes',
       tasks: []
     }
   },
