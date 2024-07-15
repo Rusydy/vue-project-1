@@ -5,13 +5,15 @@
 
   <h2>Add a new task</h2>
 
+  <span>You have {{ allTasks }} {{ allTasks > 1 ? 'tasks' : 'task' }} at the moment</span>
+
   <div>
     <input type="text" v-model="newTask" placeholder="Add a new task" @keyup.enter="addTask">
     <button @click="addTask" :disabled="newTask.length < 1">Add task</button>
   </div>
 
   <ul>
-    <li v-for="(task, index) in tasks" :key="index">
+    <li v-for="(task, index) in latestTask" :key="index">
       {{ index + 1 }}. {{ task.name }}
 
       <button @click="removeTask(task.id)">Remove</button>
@@ -58,6 +60,14 @@ export default {
 
         return task
       })
+    }
+  },
+  computed: {
+    allTasks() {
+      return this.tasks.length
+    },
+    latestTask() {
+      return [...this.tasks].reverse()
     }
   }
 }
